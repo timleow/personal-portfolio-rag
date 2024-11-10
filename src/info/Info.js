@@ -37,13 +37,17 @@ export const info = {
             text: 'Singaporean'
         },
         {
+            emoji: "🇸🇪",
+            text: "on exchange at Uppsala University"
+        },
+        {
             emoji: "🤖",
             text: "interested in LLMs and AI"
         },
         {
             emoji: "🎶",
             text: "loves straight-ahead jazz, bebop, funk, and modern hip-hop"
-        }
+        },
         //TODO add resume link
     ],
     socials: [
