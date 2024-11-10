@@ -5,29 +5,30 @@ import { useLocation } from "react-router-dom";
 import { HashLink as Link } from 'react-router-hash-link';
 import { Box } from "@mui/material";
 import { info } from "../info/Info";
-import { singlePage } from '../info/Info';
+// import { singlePage } from '../info/Info';
+import SinglePageToggler from './home/SinglePageToggler';
 
 const links = [
     {
-        name: 'Home',
+        name: 'home',
+        // type: 'initials',
         to: '',
         active: 'home'
     },
+    // {
+    //     name: 'About Me',
+    //     to: 'about',
+    //     active: 'about'
+    // },
+    // {
+    //     name: 'Portfolio',
+    //     to: 'portfolio',
+    //     active: 'portfolio'
+    // },
     {
-        name: 'About Me',
-        to: 'about',
-        active: 'about'
-    },
-    {
-        name: info.initials,
-        type: 'initials',
-        to: '',
-        active: 'home'
-    },
-    {
-        name: 'Portfolio',
-        to: 'portfolio',
-        active: 'portfolio'
+        name: 'Resume',
+        to: 'resume',
+        active: 'resume'
     }
 ]
 
@@ -40,7 +41,7 @@ const scrollWidthOffset = (el) => {
 }
 
 
-export default function Navbar({ darkMode, handleClick, active, setActive }) {
+export default function Navbar({ darkMode, handleClick, singlePage, handleSinglePage, active, setActive }) {
 
     return (
         <Box component={'nav'} width={'100%'} position={singlePage ? 'fixed' : 'relative'} className={darkMode? Style.dark : Style.light}>
@@ -62,6 +63,10 @@ export default function Navbar({ darkMode, handleClick, active, setActive }) {
                 <li>
                     <Toggler darkMode={darkMode} handleClick={handleClick} />
                 </li>
+                {/* <li>
+                    <SinglePageToggler singlePage={singlePage} handleSinglePage={handleSinglePage} />
+                </li> */}
+
             </Box>
         </Box>
     )

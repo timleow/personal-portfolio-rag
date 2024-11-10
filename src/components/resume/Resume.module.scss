@@ -18,13 +18,12 @@ h2 {
   }
 }
 
-.headphone {
-  animation-name: bounce;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  transform-origin: center;
-  display: inline-block;
+.resumeItem {
+  .content {
+      transition: max-height 0.5s ease;
+  }
 }
+
 
 @keyframes bounce {
   0%, 100% { transform: translateY(); }
@@ -39,6 +38,12 @@ a {
 a:hover {
   color: $lightgray;
   transition: color 200ms ease;
+}
+
+
+.experience:hover {
+  // color: ;
+  // transition: color 200ms ease;
 }
 
 @keyframes wave {

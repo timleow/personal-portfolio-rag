@@ -15,24 +15,42 @@ export default function BaseLayout() {
    const refHome = useScrollObserver(setActive);
    const refAbout = useScrollObserver(setActive);
    const refPortfolio = useScrollObserver(setActive);
+   const refResume = useScrollObserver(setActive);
    let [darkMode, setDarkMode] = useState(false);
-
-
+   let [singlePage, setSinglePage] = useState(false);
 
    function handleToggleDarkMode() {
-      let oppositeOfCurrentDarkMode = !darkMode
-      console.log(oppositeOfCurrentDarkMode)
-      localStorage.setItem('darkMode', `${oppositeOfCurrentDarkMode}`)
-      setDarkMode(oppositeOfCurrentDarkMode)
+      console.log(!darkMode)
+      localStorage.setItem('darkMode', `${!darkMode}`)
+      setDarkMode(!darkMode)
+   }
+
+   function handleToggleSinglePage() {
+      console.log(!singlePage)
+      localStorage.setItem('singlePage', `${!singlePage}`)
+      setSinglePage(!singlePage)
+      if (!singlePage) {
+         const currentHeader = location.hash;
+         window.history.pushState({}, '', location.pathname + currentHeader.replace('#', ''));
+      }
+      setActive(location.pathname === '/' ? 'home' : location.pathname.slice(1, location.pathname.length))
    }
 
    useEffect(() => {
       let detectedDarkMode = JSON.parse(localStorage.getItem('darkMode'));
-
       if (detectedDarkMode) {
          setDarkMode(detectedDarkMode)
       } else {
          localStorage.setItem('darkMode', 'false')
+      }
+   }, [])
+
+   useEffect(() => {
+      let detectedSinglePage = JSON.parse(localStorage.getItem('singlePage'));
+      if (detectedSinglePage) {
+         setSinglePage(detectedSinglePage)
+      } else {
+         localStorage.setItem('singlePage', 'false')
       }
    }, [])
 
@@ -41,16 +59,15 @@ export default function BaseLayout() {
          <Grid container display={'flex'} flexDirection={'column'} minHeight={'100vh'}
             justifyContent={'space-between'}>
             <Grid item>
-               <Navbar darkMode={darkMode} handleClick={handleToggleDarkMode} active={active} setActive={setActive} />
+               <Navbar darkMode={darkMode} singlePage={singlePage} handleClick={handleToggleDarkMode} handleSinglePage={handleToggleSinglePage} active={active} setActive={setActive} />
             </Grid>
             <Grid item flexGrow={1}>
-               {singlePage ? <SinglePageRoutes refs={{refHome, refAbout, refPortfolio}}/> : <MultiPageRoutes />}
+               {singlePage ? <SinglePageRoutes refs={{refHome, refAbout, refPortfolio, refResume}}/> : <MultiPageRoutes />}
             </Grid>
             <Grid item>
                <Box component={'footer'} display={'flex'} flexDirection={'column'} alignItems={'center'}
                   py={'1.5rem'} sx={{ opacity: 0.7 }} width={'100%'}>
-                  <p>template created with &hearts; by <a href={'https://paytonpierce.dev'}>Payton Pierce</a></p>
-                  <p>&copy; 2023</p>
+                  <p>Timothy Leow &copy; 2024</p>
                </Box>
             </Grid>
          </Grid>
