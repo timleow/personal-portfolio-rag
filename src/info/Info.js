@@ -26,7 +26,7 @@ export const info = {
     lastName: "Leow",
     initials: "tl", // the example uses first and last, but feel free to use three or more if you like.
     position: "NUS Computer Science Undergraduate",
-    hobbyPosition: "Jazz Saxophonist",
+    // hobbyPosition: "Jazz Saxophonist",
 
     selfPortrait: self, // don't change this unless you want to name your self-portrait in the "img" folder something else!
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, // don't change this either
@@ -44,6 +44,15 @@ export const info = {
             emoji: "🤖",
             text: "interested in LLMs and AI"
         },
+        {
+            emoji: "⛓",
+            text: "working on RAG pipelines and agentic workflows"
+        },
+        {
+            emoji: "🎷",
+            text: "jazz saxophonist"
+        },
+        
         {
             emoji: "🎶",
             text: "loves straight-ahead jazz, bebop, funk, and modern hip-hop"
