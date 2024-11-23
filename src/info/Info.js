@@ -77,7 +77,7 @@ export const info = {
         },
         {
             link: "https://chainy--gicaz7n.wittyforest-a9618fd9.southeastasia.azurecontainerapps.io/",
-            icon: "fa fa-robot",
+            icon: "fa fa-commenting",
             label: 'chainy'
         },
 
