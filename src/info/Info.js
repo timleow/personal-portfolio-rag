@@ -66,6 +66,11 @@ export const info = {
             icon: "fa fa-spotify",
             label: 'spotify'
         },
+        {
+            link: "https://chainy--gicaz7n.wittyforest-a9618fd9.southeastasia.azurecontainerapps.io/",
+            icon: "fa fa-robot",
+            label: 'chainy'
+        },
 
 
     ],
