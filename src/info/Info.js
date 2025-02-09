@@ -76,7 +76,7 @@ export const info = {
             label: 'spotify'
         },
         {
-            link: "https://chainy--gicaz7n.wittyforest-a9618fd9.southeastasia.azurecontainerapps.io/",
+            link: process.env.REACT_APP_CHAINLIT_URL,
             icon: "fa fa-commenting",
             label: 'chainy'
         },
