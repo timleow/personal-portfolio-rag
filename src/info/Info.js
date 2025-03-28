@@ -1,9 +1,6 @@
 import self from "../img/self.png"
 import mock1 from "../img/mock1.png"
 import mock2 from "../img/mock2.png"
-import mock3 from "../img/mock3.png"
-import mock4 from "../img/mock4.png"
-import mock5 from "../img/mock5.png"
 
 /* Hi there! Thanks for checking out my portfolio template. Be sure to read the comments to get a better understanding of
 how to make this template work best for you! */
@@ -25,17 +22,12 @@ export const info = {
     firstName: "Timothy",
     lastName: "Leow",
     initials: "tl", // the example uses first and last, but feel free to use three or more if you like.
-    position: "NUS Computer Science Undergraduate",
-    // hobbyPosition: "Jazz Saxophonist",
+    position: "NUS Penultimate Computer Science Undergraduate",
 
     selfPortrait: self, // don't change this unless you want to name your self-portrait in the "img" folder something else!
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, // don't change this either
     baseColor: colors[0],
     miniBio: [ // these are just some "tidbits" about yourself. You can look at mine https://paytonjewell.github.io/#/ for an example if you'd like
-        {
-            emoji: '🇸🇬',
-            text: 'Singaporean'
-        },
         {
             emoji: "🤖",
             text: "interested in LLMs and AI"
@@ -46,7 +38,7 @@ export const info = {
         },
         {
             emoji: "🎷",
-            text: "jazz saxophonist in my free time"
+            text: "musician in my free time"
         },
     ],
     socials: [
@@ -66,9 +58,9 @@ export const info = {
             label: 'spotify'
         },
         {
-            link: process.env.REACT_APP_CHAINLIT_URL,
-            icon: "fa fa-commenting",
-            label: 'chainy'
+            link: "https://timothyleow.substack.com/",
+            icon: "fa fa-bookmark",
+            label: 'substack'
         },
 
 
@@ -89,35 +81,17 @@ export const info = {
         },
     ],
     portfolio: [ // This is where your portfolio projects will be detailed
-        {
-            title: "Project 1",
-            live: "https://paytonpierce.dev", //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
-            source: "https://github.com/paytonjewell", // this should be a link to the **repository** of the project, where the code is hosted.
-            image: mock1
-        },
-        {
-            title: "Project 2",
-            live: "https://paytonpierce.dev",
-            source: "https://github.com/paytonjewell",
-            image: mock2
-        },
         // {
-        //     title: "Project 3",
-        //     live: "https://paytonpierce.dev",
-        //     source: "https://github.com/paytonjewell",
-        //     image: mock3
+        //     title: "Project 1",
+        //     live: "https://paytonpierce.dev", //this should be a link to the live version of your project, think github pages, netlify, heroku, etc. Or your own domain, if you have it.
+        //     source: "https://github.com/paytonjewell", // this should be a link to the **repository** of the project, where the code is hosted.
+        //     image: mock1
         // },
         // {
-        //     title: "Project 4",
+        //     title: "Project 2",
         //     live: "https://paytonpierce.dev",
         //     source: "https://github.com/paytonjewell",
-        //     image: mock4
+        //     image: mock2
         // },
-        // {
-        //     title: "Project 5",
-        //     live: "https://paytonpierce.dev",
-        //     source: "https://github.com/paytonjewell",
-        //     image: mock5
-        // }
     ]
 }

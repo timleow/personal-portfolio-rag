@@ -61,5 +61,5 @@ export const resumeData = {
                 ]
         }
     ],
-    skills: ['LangChain', 'vLLM', 'Flask', 'Podman', 'Docker', 'Python', 'Java', 'C', 'Azure VMs']
+    skills: ['LangChain', 'LangGraph', 'vLLM', 'Flask', 'Podman', 'Docker', 'Python', 'Java', 'C', 'Azure', 'nltk', 'Information Retrieval', 'NLP',]
 };
