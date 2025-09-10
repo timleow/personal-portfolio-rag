@@ -1,6 +1,18 @@
 export const resumeData = {
     workExperience: [
         {
+            logoUrl: '/images/nus.png',
+            altText: 'NUS Information Technology',
+            title: 'AI Engineer Intern',
+            subtitle: 'NUS Information Technology',
+            period: 'May 2025 - Nov 2025',
+            desc: [
+                `Engineered a scalable multi-agent system for complex conversational tasks, using Microsoft’s Semantic Kernel Python SDK and common LLM API.`,
+                `Developed a dynamic personalization system with a dedicated intent-detection layer and employed advanced prompt engineering techniques to adapt the AI-Know platform’s behavior to fit users’ personalisations.`,
+                `Working on a custom Tool library for AI-Create Agents.`
+                ]         
+        },
+        {
             logoUrl: '/images/dso.png',
             altText: 'DSO National Laboratories',
             title: 'Software Engineer Intern',
@@ -9,9 +21,7 @@ export const resumeData = {
             desc: [`Constructed a robust back-end for a chatbot with Retrieval-Augmented Generation (RAG) leveraging tools such as vLLM (for model serving), Flask (for API server) and LangChain (for RAG logic).`,
                 `Built and containerized a PDF vectorizer with LangChain and Podman to automatically maintain a FAISS vector database which powered the data retrieval process.`,
                 `Created comprehensive documentation and collaborated with the front-end developer to deliver a robust solution which greatly helped with onboarding users to a newly revamped procurement system.`
-                ]
-                   
-                   
+                ]         
         },
         {
             logoUrl: '/images/nus.png',
@@ -43,7 +53,9 @@ export const resumeData = {
             title: 'Computer Science',
             subtitle: 'National University of Singapore',
             period: 'Aug 2022 - May 2026',
-            desc: [`NUS Merit Scholarship (2022 - 2026)`,
+            desc: [
+                `Dean's List (AY24/25, Semester 2)`,
+                `NUS Merit Scholarship (2022 - 2026)`,
                 `DUO-Singapore Exchange Fellowship Award (2024)`,
                 `NUS Orbital Project - SyncUp - Achieved Apollo 11 (2023)`,
                 `President of the NUS Jazz Band (2023-2024)`,
@@ -61,5 +73,5 @@ export const resumeData = {
                 ]
         }
     ],
-    skills: ['LangChain', 'LangGraph', 'vLLM', 'Flask', 'Podman', 'Docker', 'Python', 'Java', 'C', 'Azure', 'nltk', 'Information Retrieval', 'NLP',]
+    skills: ['LangChain', 'LangGraph', 'AWS Strands SDK', 'Semantic Kernel', 'Podman', 'Docker', 'Python', 'Azure Cloud Services', 'Information Retrieval', 'NLP',]
 };

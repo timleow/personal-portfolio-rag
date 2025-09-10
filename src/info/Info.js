@@ -22,7 +22,7 @@ export const info = {
     firstName: "Timothy",
     lastName: "Leow",
     initials: "tl", // the example uses first and last, but feel free to use three or more if you like.
-    position: "NUS Penultimate Computer Science Undergraduate",
+    position: "Final Year NUS Computer Science Undergraduate",
 
     selfPortrait: self, // don't change this unless you want to name your self-portrait in the "img" folder something else!
     gradient: `-webkit-linear-gradient(135deg, ${colors})`, // don't change this either
@@ -30,7 +30,7 @@ export const info = {
     miniBio: [ // these are just some "tidbits" about yourself. You can look at mine https://paytonjewell.github.io/#/ for an example if you'd like
         {
             emoji: "🤖",
-            text: "interested in LLMs and AI"
+            text: "interested in LLM/AI applications"
         },
         {
             emoji: "⛓",
