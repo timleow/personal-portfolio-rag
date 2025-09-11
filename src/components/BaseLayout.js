@@ -7,6 +7,14 @@ import MultiPageRoutes from './MultiPageRoutes';
 import SinglePageRoutes from './SinglePageRoutes';
 import useScrollObserver from '../hooks/useScrollObserver';
 
+// Define the event handler outside the component so we can add and remove the same function reference.
+const handleChainlitCall = (e) => {
+   const { name, args, callback } = e.detail;
+   if (name === "test") {
+      callback("You sent: " + args.msg);
+   }
+};
+
 export default function BaseLayout() {
    const location = useLocation();
 
@@ -19,13 +27,11 @@ export default function BaseLayout() {
    let [singlePage, setSinglePage] = useState(false);
 
    function handleToggleDarkMode() {
-      console.log(!darkMode)
       localStorage.setItem('darkMode', `${!darkMode}`)
       setDarkMode(!darkMode)
    }
 
    function handleToggleSinglePage() {
-      console.log(!singlePage)
       localStorage.setItem('singlePage', `${!singlePage}`)
       setSinglePage(!singlePage)
       if (!singlePage) {
@@ -54,48 +60,60 @@ export default function BaseLayout() {
    }, []);
 
    useEffect(() => {
-      // this will run when the component mounts, and when darkMode changes
-      if (document.getElementById("chainlit-copilot")) {
-         console.log("should remove old component here")
-         document.body.removeChild(document.getElementById("chainlit-copilot"));
-      }
+      // This effect handles the mounting and unmounting of the Chainlit widget.
+      // It re-runs every time the `darkMode` state changes.
+
       const script = document.createElement("script");
+      // Give the script an ID for easier and more reliable removal.
+      script.id = 'chainlit-copilot-script';
       script.src = `${process.env.REACT_APP_CHAINLIT_URL}/copilot/index.js`;
-      console.log(script.src)
       script.async = true;
       document.body.appendChild(script);
 
       // Initialize the Chainlit widget after the script is loaded
       script.onload = () => {
-         window.mountChainlitWidget({
-            chainlitServer: process.env.REACT_APP_CHAINLIT_URL,
-            theme: darkMode ? "dark" : "light",
-            button: {
-               style: {
-                  color: darkMode ? "black" : "white",
-                  bgcolor: darkMode ? "white" : "black",
-                  bgcolorHover: darkMode ? "#696969" : "grey",
+         if (window.mountChainlitWidget) {
+            window.mountChainlitWidget({
+               chainlitServer: process.env.REACT_APP_CHAINLIT_URL,
+               theme: darkMode ? "dark" : "light",
+               button: {
+                  style: {
+                     // Programmatically set colors based on darkMode state
+                     color: darkMode ? "black" : "white", // Icon color
+                     backgroundColor: darkMode ? "white" : "black", // Button background
+                     // Note: Chainlit uses 'backgroundColor', not 'bgcolor'
+                  }
                }
-
-            }
-
-         });
-
-         // Add custom event listener for the widget
-         window.addEventListener("chainlit-call-fn", (e) => {
-            const { name, args, callback } = e.detail;
-            if (name === "test") {
-               callback("You sent: " + args.msg);
-            }
-         });
+            });
+            // Add the event listener using our named function
+            window.addEventListener("chainlit-call-fn", handleChainlitCall);
+         }
       };
 
-      // Clean up the script and event listener on unmount
+      // This is the cleanup function. It runs before the effect runs again,
+      // and also when the component unmounts.
       return () => {
-         document.body.removeChild(script);
-         window.removeEventListener("chainlit-call-fn", () => {});
+         // 1. Remove the widget's main container div
+         const widgetContainer = document.getElementById("chainlit-copilot");
+         if (widgetContainer && widgetContainer.parentNode) {
+            widgetContainer.parentNode.removeChild(widgetContainer);
+         }
+
+         // 2. Remove the script we added
+         const scriptElement = document.getElementById('chainlit-copilot-script');
+         if (scriptElement && scriptElement.parentNode) {
+            scriptElement.parentNode.removeChild(scriptElement);
+         }
+         
+         // 3. If the widget ever provides an official unmount function, call it (defensive check)
+         if (window.unmountChainlitWidget) {
+            window.unmountChainlitWidget();
+         }
+
+         // 4. Correctly remove the event listener using the named function
+         window.removeEventListener("chainlit-call-fn", handleChainlitCall);
       };
-   }, [darkMode]);
+   }, [darkMode]); // The effect re-runs whenever darkMode changes
 
    return (
       <Box className={darkMode ? Style.dark : Style.light}>
@@ -117,3 +135,4 @@ export default function BaseLayout() {
       </Box>
    );
 }
+
