@@ -43,6 +43,11 @@ export const info = {
     ],
     socials: [
         {
+            link: process.env.REACT_APP_CHAINLIT_URL,
+            icon: "fa fa-commenting",
+            label: 'chainy'
+        },
+        {
             link: "https://github.com/timleow",
             icon: "fa fa-github",
             label: 'github'
@@ -62,6 +67,7 @@ export const info = {
             icon: "fa fa-bookmark",
             label: 'substack'
         },
+
 
 
     ],
