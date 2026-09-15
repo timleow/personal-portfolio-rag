@@ -49,7 +49,7 @@ export default function Education() {
                                     sx={{
                                         width: 48,
                                         height: 48,
-                                        opacity: imagesLoaded[index] ? 1 : 0,
+                                        opacity: (!item.logoUrl || imagesLoaded[index]) ? 1 : 0,
                                         transition: 'opacity 0.5s ease-in-out'
                                     }}
                                     imgProps={{
@@ -88,11 +88,13 @@ export default function Education() {
                         <Box mt={2}>
                             <Collapse in={expandedItems[index]} timeout="auto">
                                 <Box sx={{ opacity: expandedItems[index] ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
-                                    <Typography variant="body2" component="ul" sx={{ m: 0, pl: 2 }}>
+                                    <ul style={{ margin: 0, paddingLeft: '20px' }}>
                                         {item.desc.map((bullet, bulletIndex) => (
-                                            <li key={bulletIndex}>{bullet}</li>
+                                            <Typography component="li" variant="body2" key={bulletIndex}>
+                                                {bullet}
+                                            </Typography>
                                         ))}
-                                    </Typography>
+                                    </ul>
                                 </Box>
                             </Collapse>
                         </Box>
