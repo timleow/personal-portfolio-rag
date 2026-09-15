@@ -16,25 +16,11 @@ const ExpandMore = styled((props) => {
     transform: !expand ? 'rotate(0deg)' : 'rotate(90deg)',
 }));
 
-// Define keyframes for fade in and fade out animations
-const FadeInBox = styled(Box)(({ theme }) => ({
-    animation: `fadeIn 0.5s ease-in`,
-    '@keyframes fadeIn': {
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-    },
-}));
-
-const FadeOutBox = styled(Box)(({ theme }) => ({
-    animation: `fadeOut 0.20s ease-out`,
-    '@keyframes fadeOut': {
-        from: { opacity: 1 },
-        to: { opacity: 0 },
-    },
-}));
-
 export default function Education() {
     const [expandedItems, setExpandedItems] = useState(
+        resumeData.education.map(() => false)
+    );
+    const [imagesLoaded, setImagesLoaded] = useState(
         resumeData.education.map(() => false)
     );
 
@@ -57,7 +43,25 @@ export default function Education() {
                     <Grid id={index} className={Style.experience} item key={index} onClick={() => handleExpandClick(index)}>
                         <Grid container spacing={2} alignItems="center">
                             <Grid item>
-                                <Avatar src={item.logoUrl} alt={item.altText} sx={{ width: 48, height: 48 }} />
+                                <Avatar
+                                    src={item.logoUrl}
+                                    alt={item.altText}
+                                    sx={{
+                                        width: 48,
+                                        height: 48,
+                                        opacity: (!item.logoUrl || imagesLoaded[index]) ? 1 : 0,
+                                        transition: 'opacity 0.5s ease-in-out'
+                                    }}
+                                    imgProps={{
+                                        onLoad: () => {
+                                            setImagesLoaded(prev => {
+                                                const newImagesLoaded = [...prev];
+                                                newImagesLoaded[index] = true;
+                                                return newImagesLoaded;
+                                            });
+                                        }
+                                    }}
+                                />
                             </Grid>
                             <Grid item xs>
                                 <Typography variant="subtitle1" component="div" fontWeight="bold">
@@ -83,24 +87,13 @@ export default function Education() {
                         </Grid>
                         <Box mt={2}>
                             <Collapse in={expandedItems[index]} timeout="auto">
-                                {expandedItems[index] ? (
-                                    <FadeInBox>
-                                        <Typography variant="body2">
-                                            {item.desc.map((bullet, index) => (
-                                                <li key={index}>{bullet}</li>
-                                            ))} 
-                                        </Typography>
-                                    </FadeInBox>
-                                ) : (
-                                    <FadeOutBox>
-                                        <Typography variant="body2">
-                                            {item.desc.map((bullet, index) => (
-                                                <li key={index}>{bullet}</li>
-                                            ))} 
-                                        </Typography>
-                                    </FadeOutBox>
-                                )}
-
+                                <Box sx={{ opacity: expandedItems[index] ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
+                                    <Typography variant="body2">
+                                        {item.desc.map((bullet, bulletIndex) => (
+                                            <li key={bulletIndex}>{bullet}</li>
+                                        ))}
+                                    </Typography>
+                                </Box>
                             </Collapse>
                         </Box>
                     </Grid>
