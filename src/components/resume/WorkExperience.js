@@ -87,13 +87,11 @@ export default function WorkExperience() {
                         <Box mt={2}>
                             <Collapse in={expandedItems[index]} timeout="auto">
                                 <Box sx={{ opacity: expandedItems[index] ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
-                                    <ul style={{ margin: 0, paddingLeft: '20px' }}>
+                                    <Typography variant="body2">
                                         {item.desc.map((bullet, bulletIndex) => (
-                                            <Typography component="li" variant="body2" key={bulletIndex}>
-                                                {bullet}
-                                            </Typography>
+                                            <li key={bulletIndex}>{bullet}</li>
                                         ))}
-                                    </ul>
+                                    </Typography>
                                 </Box>
                             </Collapse>
                         </Box>
